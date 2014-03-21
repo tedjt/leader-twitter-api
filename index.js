@@ -2,7 +2,6 @@ var debug = require('debug')('leader:twitter:api');
 var extend = require('extend');
 var objCase = require('obj-case');
 var Twitter = require('mtwitter');
-
 var map = require('map');
 
 /**
