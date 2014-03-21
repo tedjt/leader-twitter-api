@@ -1,0 +1,23 @@
+{
+  "name": "leader-twitter-api",
+  "version": "1.0.0",
+  "repository": "git://github.com/tedjt/leader-twitter-api.git",
+  "license": "MIT",
+  "description": "A TWitter API plugin for leader",
+  "keywords": [
+    "leader",
+    "Twitter",
+    "middleware"
+  ],
+  "dependencies": {
+    "debug": "~0.7.4",
+    "extend": "~1.2.1",
+    "levenshtein": "~1.0",
+    "map": "git://github.com/ivolo/map",
+    "obj-case": "0.0.3",
+    "mtwitter": "~1.5.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1"
+  }
+}
