@@ -33,7 +33,7 @@ function middleware (options) {
     var username = getUsername(person, context);
     if (!username) return next();
     debug('requesting twitter api profile with username %s ..', username);
-    twitter.get('/users/show', {screen_name: 'tlbtlbtlb'}, function(err, item) {
+    twitter.get('/users/show', {screen_name: username}, function(err, item) {
       if (err) return next(err);
       if (!item) return next();
       var subset = general(item, person);
