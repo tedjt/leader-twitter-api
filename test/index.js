@@ -3,6 +3,7 @@ var assert = require('assert');
 var plugin = require('..');
 
 describe('leader-twitter-api', function () {
+  this.timeout(1000 * 60);
 
   var twitter = plugin({
     key: 'clKksanAwv0kDGj9iSyoZA',
@@ -25,8 +26,8 @@ describe('leader-twitter-api', function () {
     var context = {};
     twitter.fn(person, context, function (err) {
       if (err) return done(err);
+      console.log(person);
       assert(person.twitter);
-      console.log(person.twitter);
       assert(person.twitter.followers);
       done();
     });

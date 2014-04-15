@@ -1,6 +1,7 @@
 var debug = require('debug')('leader:twitter:api');
 var extend = require('extend');
-var objCase = require('obj-case');
+var leaderUtils = require('leader-utils');
+var objCase = leaderUtils.objcase;
 var Twitter = require('mtwitter');
 var map = require('map');
 
@@ -67,6 +68,17 @@ function general (profile, person) {
     var candidate = objCase(profile, 'entities.url.urls[0].expanded_url');
     if (candidate) {
       general.personal_url = candidate;
+      var cleanDomain = (objCase(profile, 'entities.url.urls[0].display_url') || leaderUtils.getCleanDomain(candidate)).trim();
+      var interestingDomain = isInterestingDomain(cleanDomain);
+      if (interestingDomain) {
+        if (!objCase(person, 'domain.name')) {
+          person.domain = {name: cleanDomain, personal:false, disposable:false, interesting: true};
+        }
+        if (!objCase(person, 'company.website')) {
+          person.company = person.company || {};
+          person.company.website = candidate
+        }
+      }
     }
   }
   return general;
@@ -94,4 +106,23 @@ function wait (person, context) {
 
 function getUsername (person, context) {
   return objCase(person, 'twitter.username');
+}
+
+var notInterestingDomains = [
+  'blogspot.com',
+  'tumblr.com',
+  '.me',
+  'facebook.com',
+  'soundcloud.com',
+  'ebay',
+  'youtu.be',
+  'youtube.com',
+  'instagram.com',
+  'etsy.com'
+];
+function isInterestingDomain(domain) {
+  var lowerDomain = domain.toLowerCase();
+  return notInterestingDomains.every(function(d) {
+    return lowerDomain.indexOf(d) === -1;
+  });
 }

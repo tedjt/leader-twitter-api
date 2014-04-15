@@ -13,7 +13,7 @@
     "debug": "~0.7.4",
     "extend": "~1.2.1",
     "map": "git://github.com/ivolo/map",
-    "obj-case": "git://github.com/tedjt/obj-case",
+    "leader-utils": "git://github.com/tedjt/leader-utils",
     "mtwitter": "~1.5.2"
   },
   "devDependencies": {
