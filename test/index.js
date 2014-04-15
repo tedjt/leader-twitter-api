@@ -2,7 +2,7 @@
 var assert = require('assert');
 var plugin = require('..');
 
-describe('leader-crunchbase-api', function () {
+describe('leader-twitter-api', function () {
 
   var twitter = plugin({
     key: 'clKksanAwv0kDGj9iSyoZA',

@@ -52,7 +52,7 @@ function middleware (options) {
  * @param {Object} person
  */
 function general (profile, person) {
-  return map(profile, {
+  var general = map(profile, {
     'name': 'name',
     'headline': 'description',
     'location': 'location',
@@ -63,6 +63,13 @@ function general (profile, person) {
     'tweets': 'statuses_count',
     'personal_url': 'url'
   });
+  if (!general.person_url || general.personUrl.indexOf('t.co') !== -1) {
+    var candidate = objCase(profile, 'entities.url.urls[0].expanded_url');
+    if (candidate) {
+      general.personal_url = candidate;
+    }
+  }
+  return general;
 }
 
 /**
