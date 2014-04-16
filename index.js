@@ -37,7 +37,8 @@ function middleware (options) {
     twitter.get('/users/show', {screen_name: username}, function(err, item) {
       if (err) return next(err);
       if (!item) return next();
-      var subset = general(item, person);
+      var subset = getGeneral(item, person);
+      person.twitter.url = 'http://www.twitter.com/' + username;
       extend(true, context, { twitterapi : subset});
       extend(true, person.twitter, subset);
       debug('twitter profile for %s has been populated', username);
@@ -52,7 +53,7 @@ function middleware (options) {
  * @param {Object} profile
  * @param {Object} person
  */
-function general (profile, person) {
+function getGeneral (profile, person) {
   var general = map(profile, {
     'name': 'name',
     'headline': 'description',
@@ -76,7 +77,7 @@ function general (profile, person) {
         }
         if (!objCase(person, 'company.website')) {
           person.company = person.company || {};
-          person.company.website = candidate
+          person.company.website = candidate;
         }
       }
     }
