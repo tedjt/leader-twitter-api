@@ -119,7 +119,8 @@ var notInterestingDomains = [
   'youtu.be',
   'youtube.com',
   'instagram.com',
-  'etsy.com'
+  'etsy.com',
+  'goo.gl'
 ];
 function isInterestingDomain(domain) {
   var lowerDomain = domain.toLowerCase();
