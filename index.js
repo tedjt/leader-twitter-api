@@ -115,6 +115,7 @@ var notInterestingDomains = [
   '.me',
   'facebook.com',
   'soundcloud.com',
+  'linkedin.com',
   'ebay',
   'youtu.be',
   'youtube.com',
